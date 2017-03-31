@@ -2,12 +2,12 @@ package it.polito.tdp.lab04.model;
 
 public class Studente {
 
-	private String matricola;
+	private int matricola;
 	private String cognome;
 	private String nome;
 	private String cds;
 	
-	public Studente(String matricola, String cognome, String nome, String cds) {
+	public Studente(int matricola, String cognome, String nome, String cds) {
 		super();
 		this.matricola = matricola;
 		this.cognome = cognome;
@@ -18,14 +18,14 @@ public class Studente {
 	/**
 	 * @return the matricola
 	 */
-	public String getMatricola() {
+	public int getMatricola() {
 		return matricola;
 	}
 
 	/**
 	 * @param matricola the matricola to set
 	 */
-	public void setMatricola(String matricola) {
+	public void setMatricola(int matricola) {
 		this.matricola = matricola;
 	}
 
@@ -78,7 +78,7 @@ public class Studente {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((matricola == null) ? 0 : matricola.hashCode());
+		result = prime * result + matricola;
 		return result;
 	}
 
@@ -94,13 +94,12 @@ public class Studente {
 		if (getClass() != obj.getClass())
 			return false;
 		Studente other = (Studente) obj;
-		if (matricola == null) {
-			if (other.matricola != null)
-				return false;
-		} else if (!matricola.equals(other.matricola))
+		if (matricola != other.matricola)
 			return false;
 		return true;
 	}
+
+	
 
 	
 	

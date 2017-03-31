@@ -12,39 +12,33 @@ import it.polito.tdp.lab04.model.Studente;
 public class StudenteDAO {
 
 	public Studente trovaStudente(String matricola){
-		final String sql = "SELECT nome, cognome, CDS, matricola "
-				+ "FROM studente"
-				+"WHERE matricola=?";
-		
-		//List <Studente> studenti = new ArrayList<Studente>();
-		
-		try {
-			Connection conn = ConnectDB.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
+		final String sql=
+				"SELECT matricola,nome,cognome, CDS "+
+				"FROM studente "+
+				"WHERE matricola=?";
 			
-			st.setString(1, matricola);
-
-			ResultSet rs = st.executeQuery();
+			Studente result=null;
 			
-			Studente result = null;
-
-			if (rs.next()) {
-
-				// Crea un nuovo JAVA Bean Studente
-				Studente temp = new Studente(rs.getString("matricola"), rs.getString("cognome"), rs.getString("nome"), rs.getString("CDS"));
+			try{
+				Connection conn= ConnectDB.getConnection();
+				PreparedStatement st=conn.prepareStatement(sql);
 				
-				result = temp;
-			} else {
-				result = null;
+				st.setString(1, matricola);
+				ResultSet res= st.executeQuery();
+				if(res.next()){
+					
+					Studente s = new Studente(res.getInt("matricola"), res.getString("nome"), res.getString("cognome"), res.getString("CDS"));
+					result= s;
+					
+				} else{
+					result=null;
+				}
+				//conn.close();
+				return result;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
 			}
-			
-			//conn.close();
-			return result;
-
-		} catch (SQLException e) {
-			// e.printStackTrace();
-			throw new RuntimeException("Errore Db");
-		}
 	}
 
 }

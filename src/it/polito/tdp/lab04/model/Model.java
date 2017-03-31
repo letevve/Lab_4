@@ -21,7 +21,7 @@ public class Model {
 	public Studente cercaStudente(String matricola){
 		
 		StudenteDAO sd = new StudenteDAO();
-		Studente temp = new Studente(null, null, null, null);
+		Studente temp = new Studente(0, null, null, null);
 		temp = sd.trovaStudente(matricola);
 		
 		return temp;
