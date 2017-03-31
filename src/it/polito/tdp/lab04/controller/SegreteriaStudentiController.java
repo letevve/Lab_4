@@ -61,9 +61,29 @@ public class SegreteriaStudentiController {
     @FXML // fx:id="btnReset"
     private Button btnReset; // Value injected by FXMLLoader
 
+    /*
+     * restituisce la lista di corsi ai quali è iscritto lo studente di cui si inserisce la matricola
+     */
     @FXML
     void doCercaCorsi(ActionEvent event) {
-
+    	
+    	//ripulisco l'area di testo da eventuali elenchi precendenti
+    	txtResult.clear();
+    	
+    	String mat = txtMatricola.getText();
+    	List<Corso> corsiIscritto = new LinkedList<Corso>();
+    	corsiIscritto = model.cercaCorsiIscrizione(mat);
+    	
+    	//controlli
+    	if(corsiIscritto == null){
+    		txtResult.setText("Lo studente selezionato non è iscritto a nessun corso");
+    	}else {
+	    	//stampa dei corsi
+	    	for(Corso c : corsiIscritto){
+	    		String riga = "" + c.toString() + "\n";
+	    		txtResult.appendText(riga);
+	    	}
+    	}
     }
     
     

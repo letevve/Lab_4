@@ -59,5 +59,18 @@ public class Model {
 		
 		return listaStud;
 	}
+	
+	/*
+	 * riceve come parametro la matricola di uno studente e restituisce
+	 * la lista di corsi a cui quello studente è iscritto
+	 */
+	public List<Corso> cercaCorsiIscrizione(String matricola){
+		//chiama il metodo di ricerca corsi sul DAO
+		StudenteDAO sd = new StudenteDAO();
+		List<Corso> corsiIscritto = new LinkedList<Corso>();
+		corsiIscritto = sd.cercaCorsiStudente(matricola);
+		
+		return corsiIscritto;
+	}
 
 }
