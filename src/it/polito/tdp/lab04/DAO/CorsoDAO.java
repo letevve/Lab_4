@@ -88,12 +88,15 @@ public class CorsoDAO {
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
 	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
+		
+		//System.out.print("Entrato nel metodo del dao\n");
+		
 		// cerca tutti gli studenti iscritti al corso passato come parametro
 		
 		final String sql = "SELECT * "+
-							"FROM studente"+
-							"WHERE matricola IN ( SELECT DISTINCT matricola"+
-							"FROM iscrizione"+
+							"FROM studente "+
+							"WHERE matricola IN ( SELECT DISTINCT matricola "+
+							"FROM iscrizione "+
 							"WHERE codins= ? )";
 
 		List<Studente> studenti = new LinkedList<Studente>();
@@ -104,12 +107,16 @@ public class CorsoDAO {
 		PreparedStatement st = conn.prepareStatement(sql);
 		
 		st.setString(1, corso.getCodice());
+		//System.out.print("Entrato nel metodo del dao, pronto per eseguire la query\n");
+		
+		
 		ResultSet rs = st.executeQuery();
+		//System.out.print("Query eseguita\n");
 		
 		while (rs.next()) {
 		
 			Studente stemp = new Studente(rs.getInt("matricola"), rs.getString("cognome"), 
-					rs.getString("cognome"), rs.getString("CDS"));
+					rs.getString("nome"), rs.getString("CDS"));
 			
 			studenti.add(stemp);
 			

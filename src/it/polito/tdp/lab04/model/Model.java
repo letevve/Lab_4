@@ -50,9 +50,11 @@ public class Model {
 		for(Corso c : cd.getTuttiICorsi()){
 			if(c.getNome().compareTo(nomeCorso)==0){
 				corso=c;
+				corso.toString();
 				break;
 			}
 		}
+		corso.toString();
 		listaStud = cd.getStudentiIscrittiAlCorso(corso);
 		
 		return listaStud;

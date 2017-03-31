@@ -112,6 +112,15 @@ public class Corso {
 			return false;
 		return true;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Corso [codice=" + codice + ", crediti=" + crediti + ", nome=" + nome + ", periodo didattico=" + pd + "]";
+	}
 	
 	
 

@@ -77,6 +77,8 @@ public class SegreteriaStudentiController {
     	if(comboCorso.getValue()==null){
     		txtResult.setText("Inserire un corso di cui si vogliono ricercare gli iscritti\n");
     	} else {
+    		//ripulisci la casella di testo da eventuali elenchi già presenti
+    		txtResult.clear();
     		
     		//individuo il nome del corso
         	String corso = comboCorso.getValue();
@@ -90,9 +92,6 @@ public class SegreteriaStudentiController {
         		txtResult.appendText(s.getMatricola()+" "+s.getCognome()+" "+s.getNome()+" "+s.getCds()+"\n");
         	}
     	}
-    	
-    	
-    	
     }
 
     @FXML
