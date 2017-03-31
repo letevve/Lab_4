@@ -26,5 +26,36 @@ public class Model {
 		
 		return temp;
 	}
+	
+	/*
+	 * restituisce l'oggetto corso il cui codice è passato come parametro
+	 */
+	/*public Corso trovaCorso(String codCorso){
+		CorsoDAO cd = new CorsoDAO();
+		Corso ctemp = new Corso(null, 0, null, 0);
+		ctemp = cd.getCorso(codCorso);
+		
+		return ctemp;
+	}*/
+	
+	/*
+	 * riceve il codice del corso di cui deve restituire la lista degli iscritti
+	 */
+	public List<Studente> cercaIscrittiAlCorso(String nomeCorso){
+		
+		//chiama il metodo cercaIscritti su un oggetto della classe CorsoDAO
+		CorsoDAO cd = new CorsoDAO();
+		List<Studente> listaStud= new LinkedList<Studente>();
+		Corso corso = null;
+		for(Corso c : cd.getTuttiICorsi()){
+			if(c.getNome().compareTo(nomeCorso)==0){
+				corso=c;
+				break;
+			}
+		}
+		listaStud = cd.getStudentiIscrittiAlCorso(corso);
+		
+		return listaStud;
+	}
 
 }

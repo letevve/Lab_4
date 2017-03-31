@@ -5,8 +5,11 @@
 package it.polito.tdp.lab04.controller;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.lab04.model.Corso;
 import it.polito.tdp.lab04.model.Model;
 import it.polito.tdp.lab04.model.Studente;
 import javafx.event.ActionEvent;
@@ -62,10 +65,34 @@ public class SegreteriaStudentiController {
     void doCercaCorsi(ActionEvent event) {
 
     }
-
+    
+    
+    /*
+     *restituisce la lista di tutti gli iscritti al corso il cui codice viene selezionato dall'utente
+     * nel menu' a tendina
+     */
     @FXML
     void doCercaIscrittiCorso(ActionEvent event) {
-
+    	//Controllo che sia selezionato almeno un corso
+    	if(comboCorso.getValue()==null){
+    		txtResult.setText("Inserire un corso di cui si vogliono ricercare gli iscritti\n");
+    	} else {
+    		
+    		//individuo il nome del corso
+        	String corso = comboCorso.getValue();
+        	
+        	//chiamo il metodo cercaIscritti in Model
+        	List<Studente> studenti = new LinkedList<Studente>();
+        	studenti = model.cercaIscrittiAlCorso(corso);
+        	
+        	//stampo la lista di iscritti sulla UI
+        	for(Studente s : studenti) {
+        		txtResult.appendText(s.getMatricola()+" "+s.getCognome()+" "+s.getNome()+" "+s.getCds()+"\n");
+        	}
+    	}
+    	
+    	
+    	
     }
 
     @FXML
