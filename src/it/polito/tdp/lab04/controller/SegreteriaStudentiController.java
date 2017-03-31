@@ -71,10 +71,23 @@ public class SegreteriaStudentiController {
     @FXML
     void doCercaNome(MouseEvent event) {
     	String mat = txtMatricola.getText();
-    	System.out.println(""+mat);
+    	//System.out.println(""+mat);
+    	
+    	if(mat.length()<6){
+    		txtResult.appendText("Matricola non valida\n");
+    		return;
+    	}
+
     	Studente temp = model.cercaStudente(mat);
-    	txtNome.setText(temp.getNome());
-    	txtCognome.setText(temp.getCognome());
+    	
+    	if(temp==null){
+    		txtResult.appendText("Matricola "+mat+" non trovata \n");
+    	}else{
+    		txtResult.appendText("Matricola "+mat+" trovata \n");
+    		
+    		txtNome.setText(temp.getNome());
+        	txtCognome.setText(temp.getCognome());
+    	}
     }
 
     @FXML
